@@ -34,3 +34,25 @@ export interface NewsItem {
     description: string;
     url: string;
 }
+
+export interface Article {
+  source: {
+      id: string;
+      name: string;
+  };
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
+  content: string;
+}
+
+export interface NewsData {
+  articles: Article[];
+}
+
+export interface SourcesData {
+  sources: Source[];
+}

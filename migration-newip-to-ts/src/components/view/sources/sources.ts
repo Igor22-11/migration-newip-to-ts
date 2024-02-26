@@ -1,5 +1,5 @@
 import './sources.css';
-import { Source } from '../../types/index.js';
+import { Source } from '../../types/index';
 
 class Sources {
     draw(data: Source[]): void {

@@ -1,5 +1,5 @@
 import './news.css';
-import { NewsItem } from '../../types/index.js';
+import { NewsItem } from '../../types/index';
 
 class News {
     draw(data: NewsItem[]): void {
