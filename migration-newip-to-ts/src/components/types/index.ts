@@ -19,3 +19,18 @@ export interface INewsApiRequestParams {
     language?: string;
     country?: string;
 }
+
+export interface Source {
+    id: string;
+    name: string;
+}
+
+export interface NewsItem {
+    urlToImage?: string;
+    author?: string;
+    source: { name: string };
+    publishedAt: string;
+    title: string;
+    description: string;
+    url: string;
+}

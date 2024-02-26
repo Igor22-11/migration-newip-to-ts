@@ -1,19 +1,8 @@
 import './news.css';
+import { NewsItem } from '../../types/index.js';
 
 class News {
-    draw(
-        data: {
-            urlToImage?: string;
-            author?: string;
-            source: {
-                name: string;
-            };
-            publishedAt: string;
-            title: string;
-            description: string;
-            url: string;
-        }[]
-    ): void {
+    draw(data: NewsItem[]): void {
         const news = data.length >= 10 ? data.slice(0, 10) : data;
         const fragment = document.createDocumentFragment();
         const newsItemTemp = document.querySelector<HTMLTemplateElement>('#newsItemTemp');
