@@ -36,23 +36,53 @@ export interface NewsItem {
 }
 
 export interface Article {
-  source: {
-      id: string;
-      name: string;
-  };
-  author: string;
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: string;
-  content: string;
+    source: {
+        id: string;
+        name: string;
+    };
+    author: string;
+    title: string;
+    description: string;
+    url: string;
+    urlToImage: string;
+    publishedAt: string;
+    content: string;
 }
 
 export interface NewsData {
-  articles: Article[];
+    articles: Article[];
 }
 
 export interface SourcesData {
-  sources: Source[];
+    sources: Source[];
+}
+
+export interface LoaderOptions {
+    [key: string]: string | number;
+}
+
+export interface GetRespParams {
+    endpoint: string;
+    options?: LoaderOptions;
+}
+
+export interface Source {
+    id: string;
+    name: string;
+    description: string;
+    url: string;
+    category: string;
+    language: string;
+    country: string;
+}
+
+export interface SourcesResponse {
+    status: string;
+    sources: Source[];
+}
+
+export interface NewsResponse {
+    status: string;
+    totalResults: number;
+    articles: Article[];
 }

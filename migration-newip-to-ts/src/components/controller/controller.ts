@@ -1,8 +1,9 @@
 import AppLoader from './appLoader';
+import { SourcesResponse, NewsResponse } from '../types/index';
 
 class AppController extends AppLoader {
-    getSources(callback: (data: unknown) => void): void {
-        super.getResp(
+    getSources(callback: (response: SourcesResponse) => void): void {
+        super.getResp<SourcesResponse>(
             {
                 endpoint: 'sources',
             },
@@ -10,18 +11,16 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: Event, callback: (data: unknown) => void): void {
-        let target: EventTarget | null = e.target;
-        const newsContainer: HTMLElement = e.currentTarget as HTMLElement;
+    getNews(e: Event, callback: (response: NewsResponse) => void): void {
+        let target = e.target as HTMLElement | null;
+        const newsContainer = e.currentTarget as HTMLElement;
 
-        while (target !== newsContainer) {
-            if (target instanceof HTMLElement && target.classList.contains('source__item')) {
+        while (target && target !== newsContainer) {
+            if (target.classList.contains('source__item')) {
                 const sourceId = target.getAttribute('data-source-id');
-                const currentSourceId = newsContainer.getAttribute('data-source');
-
-                if (sourceId && currentSourceId !== sourceId) {
+                if (sourceId && newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
-                    super.getResp(
+                    super.getResp<NewsResponse>(
                         {
                             endpoint: 'everything',
                             options: {
@@ -33,11 +32,7 @@ class AppController extends AppLoader {
                 }
                 return;
             }
-            if (target !== null) {
-                target = (target as HTMLElement).parentNode;
-            } else {
-                return;
-            }
+            target = target.parentNode as HTMLElement | null;
         }
     }
 }
