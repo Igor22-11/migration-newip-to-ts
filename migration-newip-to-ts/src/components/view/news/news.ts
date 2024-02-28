@@ -1,5 +1,6 @@
 import './news.css';
 import { NewsItem } from '../../types/index';
+const placeholderIMG = require('../../../img/news_placeholder.jpg');
 
 class News {
     draw(data: NewsItem[]): void {
@@ -18,7 +19,7 @@ class News {
             if (newsItem && idx % 2) newsItem.classList.add('alt');
 
             const newsMetaPhoto = newsClone.querySelector('.news__meta-photo') as HTMLElement;
-            newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
+            newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || placeholderIMG})`;
 
             const newsMetaAuthor = newsClone.querySelector('.news__meta-author') as HTMLElement;
             newsMetaAuthor.textContent = item.author || item.source.name;
